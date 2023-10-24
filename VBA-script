@@ -6,10 +6,10 @@ Sub TickerLoopTesting()
          ws.Cells(1, 11).Value = "Percent Change"
          ws.Cells(1, 12).Value = "Total Stock Volume"
          
-         open_price = ws.Cells(2, 3).Value   ' <<< was OpenPrice >>>
+         open_price = ws.Cells(2, 3).Value  
          SummRow = 2
          
-         LastRow = ws.Cells(Rows.Count, 1).End(xlUp).Row    ' <<< .End(x1Up).Row not sure what the issue is>>>
+         LastRow = ws.Cells(Rows.Count, 1).End(xlUp).Row    
          
              For i = 2 To LastRow
              
@@ -24,7 +24,7 @@ Sub TickerLoopTesting()
                     ws.Range("I" & SummRow).Value = ticker
                     ws.Range("L" & SummRow).Value = tickervolume
                     
-                    ' <<< Add volume from current row and output to summary >>>
+                    
                     
                 If open_price = 0 Then
                     percent_change = 0
@@ -45,7 +45,7 @@ Sub TickerLoopTesting()
                 End If
             Next i
                 
-        LastRowSumm = ws.Cells(Rows.Count, 9).End(xlUp).Row     ' <<<.End(x1Up).Row>>>
+        LastRowSumm = ws.Cells(Rows.Count, 9).End(xlUp).Row     
             
             For i = 2 To LastRowSumm
             
@@ -63,9 +63,7 @@ Sub TickerLoopTesting()
             ws.Cells(4, 15).Value = "Greatest Total Vol"
             
         For i = 2 To LastRowSumm
-            ' <<< This logic is working so no change is necessary >>>
-            ' <<< But be aware with "If ... ElseIF", only 1st "true" conditional will execute >>>
-            ' <<< e.g. If max volume and max % were in same summrow, only get max % FYI >>>
+            
             If ws.Cells(i, 11).Value = Application.WorksheetFunction.Max(ws.Range("K2:K" & LastRowSumm)) Then
                 ws.Cells(2, 16).Value = ws.Cells(i, 9).Value
                 ws.Cells(2, 17).Value = ws.Cells(i, 11).Value
